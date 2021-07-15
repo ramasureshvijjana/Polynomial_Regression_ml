@@ -25,15 +25,17 @@ print('\nChecking for null values:\n', x_y_values.isnull().sum())
 # print(x_y_values)
 
 # Selecting x, y values from data
-x = x_y_values.loc[:, 'Width'].values.reshape(-1, 1)
-y = x_y_values.loc[:, 'Weight'].values.reshape(-1, 1)
+x = x_y_values.loc[:, 'Width'].values.reshape(-1, 1) # Input
+y = x_y_values.loc[:, 'Weight'].values.reshape(-1, 1) # Target
 
 # Splitting data for train and test purpose
 from sklearn.model_selection import train_test_split
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=.3, random_state=10)
-print('\nSize of x_train, x_test, y_train, y_test respectively:', x_train.shape, x_test.shape, y_train.shape,
-      y_test.shape)
+x_train, x_test, y_train, y_test = train_test_split(x, y,
+                                                    test_size=.3,
+                                                    random_state=10)
+print('\nSize of x_train, x_test, y_train, y_test respectively:',
+      x_train.shape, x_test.shape, y_train.shape, y_test.shape)
 
 # POLYNOMIAL REGRESSION
 poly_model = Pipeline([('polynomial', PolynomialFeatures(degree=4)), ('linear', LinearRegression())])
